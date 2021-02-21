@@ -1,0 +1,29 @@
+.container{
+    text-align: center;
+    position: absolute;
+    left: 20%;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: 800px;
+    <!-- margin-left: 200px;-->
+    <!-- 记得在此处添加信息 -->
+}
+
+.card{
+    border:2px solid;
+    border-radius:25px;
+}
+
+td{
+    text-align: center;
+    width: 200px;
+}
+
+
+p.title{
+    color:#0800FF;
+}
+

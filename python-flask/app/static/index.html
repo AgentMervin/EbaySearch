@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ebay Shopping Api</title>
+    <link rel="stylesheet" href="j08/style.css">
+
+</head>
+<body>
+<div id="container" class="container" style="text-align:center;">
+    <a href = "https://www.ebay.com/"><img class = "image" src="img/eBayLogo.png" ></a>
+    <p class = "shopping"> Shopping </p>
+    <form name="queryForm" id="searchForm" method = "get" onsubmit="validateForm()" action="" target="nm_iframe">
+        <label for = "keywords"><b>Key words<b style="color: red">*</b>: </b></label>
+        <INPUT class = "input" TYPE="text" id="keywords" name="keywords" required="required"><hr>
+        <label><b>Price range:</b></label> from
+            <input type="number"  id="minprice" name="minprice" placeholder="from ($)"> to
+            <input type="number"  id="maxprice" name="maxprice" placeholder="to ($)"><hr>
+        <b>Condition:</b><label><input type="checkbox" id="new" name="new" value="yes">New </label>
+            <label><input type="checkbox" name="used" id="used" value="yes">Used </label>
+            <label><input type="checkbox" name="verygood" id="verygood" value="yes">Very Good </label>
+            <label><input type="checkbox" name="good" id="good" value="yes">Good </label>
+            <label><input type="checkbox" name="acceptable" id="acceptable" value="yes">Acceptable </label><hr>
+        <b>Seller: </b><label><input type="checkbox" id="return_accepted" name="return_accepted" value="yes">Return Accepted </label><hr>
+        <b>Shipping:</b><label><input type = "checkbox" id= "free" name = "free" value = "yes"> Free</label>
+            <label><input type = "checkbox" id = "expedited" name = "expedited" value = "yes"> Expedited</label><hr>
+        <label for="sortby"><b>Sort by:</b></label>
+         <select  id="sortby" name="sortby">
+             <option value="Best Match">Best Match</option>
+             <option value="Price: highest first">Price: highest first</option>
+             <option value="Price + Shipping: highest first">Price+Shipping: highest first</option>
+             <option value="Price + Shipping: lowest first">Price+Shipping: lowest first</option>
+         </select><hr>
+        <input type="button" class="bnt" value="clear" onclick="clearForm()">
+        <input type="submit" class="bnt" value="search" id="search" >
+    </form>
+    <iframe id="id_iframe" name="nm_iframe" style="display:none;"></iframe>
+</div>
+
+<p>result works!</p>
+<ul class="nav nav-pills justify-content-center" role="tablist" style="margin-top:20px;" >
+  <li class="nav-item" >
+    <button class="btn btn-light nav-link" [disabled]="selectPage==1" (click)="onClickPrevious()">« Previous</button>
+  </li>
+  <li class="nav-item" *ngFor="let item of pages">
+    <button class="btn btn-light nav-link" [ngClass]="{'active': selectPage==item}" (click)="onClickPage(item)">{{item}}</button>
+  </li>
+  <li class="nav-item" [ngClass]="{'disable': selectPage==pages.length}">
+    <button class="btn btn-light nav-link" [disabled]="selectPage==pages.length" (click)="onClickNext()">Next »</button>
+  </li>
+</ul>
+
+<script src="j08/hw6.js"></script>
+</body>
+</html>
