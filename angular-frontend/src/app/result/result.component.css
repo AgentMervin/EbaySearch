@@ -1,0 +1,25 @@
+.info-check{
+  color: green;
+}
+
+.info-clear{
+  color: #ff2c16;
+}
+.nav>li>button {
+  padding: 2px;
+}
+
+.detail:hover{
+  border:1px solid  #1796f9;
+}
+
+@media (max-width: 500px) {
+  p.textTab{
+    font-size: 12px;
+  }
+  .ebayImg{
+    text-align: center;
+  }
+
+}
+

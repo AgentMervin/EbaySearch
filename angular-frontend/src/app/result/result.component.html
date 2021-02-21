@@ -1,0 +1,112 @@
+<div class="container" *ngIf="data!='{}'" style="margin-bottom:40px;">
+
+  <div class="alert alert-warning" *ngIf="noFoundInfo!=''" role="alert">{{noFoundInfo}}</div>
+
+
+
+
+
+  <div class = "row " *ngIf="errorInfo=='' && items.length!==0" style="margin-top: 20px">
+    <label class="col-sm-6 " style="font-size: 22px">Results for {{keywords}}</label>
+    <div class = "col-sm-6 col justify-content-sm-end justify-content-start">
+      <ngb-pagination [collectionSize]="items.length" [(page)]="selectPage"  pageSize="5" [maxSize]="5" size="sm" [rotate]="true"><ng-template ngbPaginationFirst>&laquo;</ng-template><ng-template ngbPaginationLast>&raquo;</ng-template><ng-template ngbPaginationPrevious>Previous</ng-template><ng-template ngbPaginationNext>Next</ng-template></ngb-pagination>
+    </div>
+  </div>
+
+
+  <div class="card" *ngFor="let item of items | slice: (selectPage-1) * 5 : (selectPage-1) * 5 + 5; let k = index" style="background-color: #D9D8DA; margin-bottom: 6px" >
+    <div class="card-body" >
+       <div class="row">
+         <span  class = "ebayImg col-sm-2 col">
+        <img  [src]="item[0]" alt="Card image cap" style="width:120px; height: 120px">
+        </span>
+         <div class="col-sm-10">
+           <a [href]="item[4]" target='_blank'> <h5 class="card-title" ><b>{{item[1]}}</b></h5></a>
+           <p class="card-text">{{item[2]}}</p>
+
+             <div class="card-text" style="font-style: italic">{{item[3]}}
+             <button *ngIf="!detailCard[(selectPage-1) * 5 + k]" (click)=" showInfo((selectPage-1) * 5 + k)" class="btn btn-light detail"  >
+               Show Details
+             </button>
+             <button *ngIf="detailCard[(selectPage-1) * 5 + k]" (click)="hideInfo((selectPage-1) * 5 + k)" class="btn btn-light detail"  >
+               Hide Details
+             </button>
+             </div>
+           <div *ngIf="detailCard[(selectPage-1) * 5 + k]" >
+             <div class="mat-app-background basic-container">
+               <mat-tab-group class="c-tab" style="background-color: #D9D8DA">
+                 <mat-tab label="Basic Info">
+                   <div class = "row">
+                     <p class = "col-sm-4 col textTab"><b>Category Name</b></p>
+                     <p class = "col-sm-8 col textTab">{{item[5]}}</p>
+                   </div>
+                   <div class = "row">
+                     <p class = "col-sm-4 col textTab"><b>Condition</b></p>
+                     <p class = "col-sm-8 col textTab">{{item[6]}}</p>
+                   </div>
+                 </mat-tab>
+                 <mat-tab label="Shipping Info">
+                   <div class = "row">
+                     <p class = "col-sm-4 col-7 textTab"><b>ShippingType</b></p>
+                     <p class = "col-sm-8 col-5 textTab">{{item[7]}}</p>
+                   </div>
+                   <div class = "row">
+                     <p class = "col-sm-4 col-7 textTab"><b>Shipping cost</b></p>
+                     <p class = "col-sm-8 col-5 textTab">{{item[8]}}</p>
+                   </div>
+                   <div class = "row">
+                     <p class = "col-sm-4 col-7 textTab"><b>Shiptolocations</b></p>
+                     <p class = "col-sm-8 col-5 textTab">{{item[9]}}</p>
+                   </div>
+                   <div class = "row">
+                     <p class = "col-sm-4 col-7 textTab"><b>ExpeditedShipping</b></p>
+                     <p class = "col-sm-8 col-5 textTab" *ngIf = "item[10]==='true'"><span class="material-icons info-check">check</span></p>
+                     <p class = "col-sm-8 col-5 textTab" *ngIf = "item[10]!=='true'"><span class="material-icons info-clear">clear</span></p>
+                   </div>
+                   <div class = "row">
+                     <p class = "col-sm-4 col-7 textTab"><b>OneDayShippingAvailable</b></p>
+                     <p *ngIf = "item[11]==='true'" class = "col-sm-8 col-5 textTab"><span class="material-icons info-check">check</span></p>
+                     <p *ngIf = "item[11]!=='true'" class = "col-sm-8 col-5 textTab"><span class="material-icons info-clear">clear</span></p>
+                   </div>
+                 </mat-tab>
+                 <mat-tab label="Listing Info">
+                   <div class = "row">
+                     <p class = "col-sm-4 col textTab"><b>BestOfferEnabled</b></p>
+                     <p *ngIf = "item[12]==='true'" class = "col-sm-8 col textTab"><span class="material-icons info-check">check</span></p>
+                     <p *ngIf = "item[12]!=='true'" class = "col-sm-8 col textTab"><span class="material-icons info-clear">clear</span></p>
+                   </div>
+                   <div class = "row">
+                     <p class = "col-sm-4 col textTab"><b>BuyItNowAvailable</b></p>
+                     <p *ngIf = "item[13]==='true'" class = "col-sm-8 col textTab"><span class="material-icons info-check">check</span></p>
+                     <p *ngIf = "item[13]!=='true'" class = "col-sm-8 col textTab"><span class="material-icons info-clear">clear</span></p>
+                   </div>
+                   <div class = "row">
+                     <p class = "col-sm-4 col textTab"><b>ListingType</b></p>
+                     <p class = "col-sm-8 col textTab">{{item[14]}}</p>
+                   </div>
+                   <div class = "row">
+                     <p class = "col-sm-4 col textTab"><b>Gift</b></p>
+                     <p *ngIf = "item[15]==='true'" class = "col-sm-8 col textTab"><span class="material-icons info-check">check</span></p>
+                     <p *ngIf = "item[15]!=='true'" class = "col-sm-8 col textTab"><span class="material-icons info-clear">clear</span></p>
+                   </div>
+                   <div class = "row">
+                     <p class = "col-sm-4 col textTab"><b>WatchCount</b></p>
+                     <p class = "col-sm-8 col textTab">{{item[16]}}</p>
+                   </div>
+                 </mat-tab>
+               </mat-tab-group>
+             </div>
+           </div>
+         </div>
+       </div>
+
+
+
+
+
+    </div>
+  </div>
+
+
+
+</div>

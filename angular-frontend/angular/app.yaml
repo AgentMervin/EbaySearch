@@ -1,0 +1,9 @@
+runtime: python27
+api_version: 1
+threadsafe: true
+handlers:
+  - url: /
+    static_files: dist/csci571-hw8/index.html
+    upload: dist/csci571-hw8/index.html
+  - url: /
+    static_dir: dist/csci571-hw8

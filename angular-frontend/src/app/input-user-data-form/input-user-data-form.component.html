@@ -1,0 +1,88 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10" style="align-content: center">
+      <form class="form-horizontal" role="form" [formGroup]="userForm" (ngSubmit)="onSubmit()">
+
+        <div class="form-group row justify-content-center" [ngClass]="{ 'has-error': invalidKeyWord() }">
+          <label class="control-label col-sm-2" for="keywords"><strong>Key words<b style="color: red">*</b></strong></label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" formControlName="keywords" id="keywords" name="keywords" placeholder="Enter keyword"></div>
+        </div>
+        <div class="form-group row justify-content-center">
+          <label class="control-label col-sm-2"><strong>Price range</strong></label>
+
+          <div class="col-sm-5 col"><input type="number" class="form-control" formControlName="minprice" id="minprice" name="minprice" placeholder="from ($)"></div>
+          <div class="col-sm-5 col"><input type="number" class="form-control" formControlName="maxprice" id="maxprice" name="maxprice" placeholder="to ($)"></div>
+        </div>
+
+
+        <div class="form-group row justify-content-center">
+          <label class="control-label col-sm-2"><b>Condition</b></label>
+          <div class="checkbox col-sm-10">
+            <label><input type="checkbox"   formControlName="New" name="New" value="yes"><b>New </b></label>
+            <label><input type="checkbox"  formControlName="used" name="used" value="yes"><b>Used</b> &nbsp;</label>
+            <label><input type="checkbox" formControlName="verygood" name="verygood" value="yes"><b>Very Good &nbsp;</b></label>
+            <label><input type="checkbox" formControlName="good" name="good" value="yes"><b>Good </b></label>
+            <label><input type="checkbox" formControlName="acceptable" name="acceptable" value="yes"><b>Acceptable</b></label>
+          </div>
+        </div>
+
+
+        <div class="form-group row justify-content-center">
+          <label class="control-label col-sm-2"><b>Seller</b></label>
+          <div class="checkbox col-sm-10">
+            <label><input type="checkbox" formControlName="return" name="return" value="yes"><b>Return accepted</b></label>
+          </div>
+        </div>
+
+        <div class="form-group row justify-content-center">
+          <label class="control-label col-sm-2"><b>Shipping</b></label>
+          <div class="checkbox col-sm-10">
+            <label><input type="checkbox" formControlName="freeship" name="freeship" value="yes"><b>Free Shipping &nbsp;</b></label>
+            <label><input type="checkbox" formControlName="expship" name="expship" value="yes"><b>Expedited shipping &nbsp;</b></label>
+          </div>
+        </div>
+
+
+
+        <div class="form-group row justify-content-center">
+          <label for="sortby" class="col-form-label col-sm-2"><b>Select Order</b></label>
+          <div class = "col-sm-10">
+            <select formControlName="sortby" class="form-control" id="sortby" >
+              <option selected >Best Match</option>
+              <option>Price: highest ﬁrst</option>
+              <option>Price + Shipping: highest ﬁrst</option>
+              <option>Price + Shipping: lowest ﬁrst</option>
+            </select>
+          </div>
+        </div>
+
+
+        <div class="form-group justify-content-center">
+          <div class="col-sm-12">
+            <button type="button" class="btn btn-secondary float-right" (click)="Onreset()" style="margin: 4px; margin-bottom: 10px"><span class="material-icons align-middle" >clear_all</span>Clear</button>
+
+            <button type="submit" class="btn btn-primary float-right" style="margin: 4px; margin-bottom: 10px"><i class="material-icons md-18 align-middle" >search</i>Search</button>
+
+          </div>
+        </div>
+      </form>
+      <br><br>
+
+
+
+      <div class="col-sm-12 remind">
+        <p class="alert alert-warning" *ngIf="invalidKeyWord()" id="keywords_error"  role="alert">{{'Please enter a keyword'}}</p>
+        <p class="alert alert-warning" *ngIf="invalidMinPrice()" id="min_price_error"  role="alert">{{'Please use appropriate values for minPrice/maxPrice'}}</p>
+      </div>
+    </div>
+    <div class="col-sm-1"></div>
+  </div>
+
+
+
+<app-result class="col-sm-12 justify-content-sm-start"#result  [hidden]="!selectResult"></app-result>
+
+
+</div>
